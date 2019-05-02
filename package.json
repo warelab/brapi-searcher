@@ -19,7 +19,12 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react-redux": "^7.0.3",
+    "redux": "^4.0.1",
+    "redux-starter-kit": "^0.5.1",
+    "redux-thunk": "^2.3.0"
+  },
   "peerDependencies": {
     "react": "16.x"
   },

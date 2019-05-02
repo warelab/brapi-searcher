@@ -1,9 +1,18 @@
-import React, {Component} from 'react'
+import React from 'react'
+import { Provider } from 'react-redux'
+import { Searcher } from './components/Searcher'
+import configureStore from './store/configureStore'
+import initializeState from './store/initialState'
+import { fetchSuggestionsIfNeeded } from "./actions/Searcher";
 
-export default class extends Component {
-  render() {
-    return <div>
-      <h2>Welcome to React components</h2>
-    </div>
-  }
-}
+const BrAPISearcher = (props) => {
+  const store = configureStore(initializeState(props));
+  store.dispatch(fetchSuggestionsIfNeeded(''));
+  return (
+    <Provider store={store}>
+      <Searcher/>
+    </Provider>
+  )
+};
+
+export default BrAPISearcher
