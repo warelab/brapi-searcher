@@ -15,4 +15,8 @@ Describe brapi-searcher here.
 [coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
 [coveralls]: https://coveralls.io/github/user/repo
 
-`http://localhost:8983/solr/brapi/query?q=text:*&group.field=entity&group.limit=10`
+## setup
+```
+npm i
+npm run start
+```
