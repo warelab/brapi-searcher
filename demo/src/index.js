@@ -21,6 +21,7 @@ class Demo extends Component {
   render() {
     return <div>
       <h1>BrAPI Searcher Demo</h1>
+      <h3>open your javascript console</h3>
       <BrAPISearcher onSelectSuggestion={(url) => this.handleSuggestion(url)}/>
       { this.state.suggestion && this.renderSuggestion() }
     </div>
