@@ -1,7 +1,8 @@
 export const REQUEST_SUGGESTIONS = 'REQUEST_SUGGESTIONS';
-function requestSuggestions(url) {
+function requestSuggestions(queryString, url) {
   return {
     type: REQUEST_SUGGESTIONS,
+    queryString,
     url
   }
 }
@@ -18,9 +19,9 @@ const shouldFetchSuggestions = (state) => {
   return !state.isFetching;
 };
 
-const fetchSuggestions = (url) => {
+const fetchSuggestions = (queryString, url) => {
   return dispatch => {
-    dispatch(requestSuggestions(url));
+    dispatch(requestSuggestions(queryString, url));
     return fetch(url)
       .then(response => response.json())
       .then(json => dispatch(receiveSuggestions(json)))
@@ -36,7 +37,7 @@ export const fetchSuggestionsIfNeeded = queryString => {
     const state = getState();
     const url = suggestURL(queryString, state.searcher);
     if (shouldFetchSuggestions(state.searcher)) {
-      return dispatch(fetchSuggestions(url))
+      return dispatch(fetchSuggestions(queryString, url))
     }
   }
 };

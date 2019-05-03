@@ -10,17 +10,18 @@ class Demo extends Component {
     }
   }
   handleSuggestion(suggestion) {
-    this.setState(suggestion)
+    console.log('received suggestion',suggestion);
+    // this.setState({suggestion})
   }
   renderSuggestion() {
     return (
-      <pre>{ JSON.stringify(this.state.suggestion), null, 2}</pre>
+      <pre>{this.state.suggestion}</pre>
     )
   }
   render() {
     return <div>
       <h1>BrAPI Searcher Demo</h1>
-      <BrAPISearcher onSelectSuggestion={this.handleSuggestion}/>
+      <BrAPISearcher onSelectSuggestion={(url) => this.handleSuggestion(url)}/>
       { this.state.suggestion && this.renderSuggestion() }
     </div>
   }

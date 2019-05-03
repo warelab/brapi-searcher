@@ -13,12 +13,16 @@ function searcher(
   switch(action.type) {
     case REQUEST_SUGGESTIONS:
       return Object.assign({}, state, {
-        isFetching: true
+        isFetching: true,
+        queryString: action.queryString
       });
     case RECEIVE_SUGGESTIONS:
       return Object.assign({}, state, {
         isFetching: false,
-        suggestions: action.suggestions
+        qtime: `${action.suggestions.responseHeader.QTime} ms`,
+        matches: action.suggestions.grouped.entity.matches,
+        groups: action.suggestions.grouped.entity.groups.map(g => [g.groupValue,g.doclist.numFound]),
+        suggestions: action.suggestions.grouped.entity.groups
       });
     default:
       return state
